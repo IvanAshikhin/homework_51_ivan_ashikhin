@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    {% if  cat_state.happiness_level == 0 %}
+       <img src="https://chudo-prirody.com/uploads/posts/2021-08/thumbs/1628756586_113-p-kot-plachet-foto-127.jpg" alt="Cat">
+    {% else %}
+        <img src="http://sun9-73.userapi.com/s/v1/if1/14elKBUrx5jA5rXYwwLgtHYZNuskD2xIMBpkyPUS_mnY4oArSA5x4ief1mHQCbSGMCoiJuto.jpg?size=200x200&quality=96&crop=0,0,960,960&ava=1" alt="Cat">
+    {% endif %}
+<h1 class="cat_name">Кот - {{ cat_state.name }}</h1>
+<p class="cat_age">Возраст - {{ cat_state.age }}</p>
+<p class="cat_satiety">Уровень сытости - {{ cat_state.satiety_level }}</p>
+<p class="cat_happiness">Уровень счастья - {{ cat_state.happiness_level }}</p>
+<form action="/cat" method="POST">
+    {% csrf_token %}
+  <h2>Чем хотите заняться с {{ name }}?</h2>
+  <select name="action">
+    <option value="feed">Кормить</option>
+    <option value="play">Играть</option>
+    <option value="sleep">Уложить спать</option>
+  </select>
+  <input type="submit" value="Подтвердить">
+</form>
+</body>
+</html>
